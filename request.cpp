@@ -45,7 +45,7 @@ int main()
                 Py_DECREF(pFunc);
                 Py_DECREF(pModule);
                 PyErr_Print();
-                fprintf(stderr,"Call failed\n");
+                std::cerr << "Call failed" << std::endl;
                 return 1;
             }
         }
@@ -59,11 +59,9 @@ int main()
     }
     else {
         PyErr_Print();
-        fprintf(stderr, "Failed to load");
+        std::cerr << "Failed to load module :(";
         return 1;
     }
-    if (Py_FinalizeEx() < 0) {
-        return 120;
-    }
+    Py_Finalize();
     return 0;
 }
